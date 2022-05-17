@@ -1350,7 +1350,12 @@ class Amazon_S3_And_CloudFront extends AS3CF_Plugin_Base {
 				$new_sizes     = apply_filters( 'intermediate_image_sizes_advanced', $new_sizes, $data, $post_id );
 				$missing_sizes = wp_get_missing_image_subsizes( $post_id );
 
-				if ( ! empty( $new_sizes ) && ! empty( $missing_sizes ) && array_intersect_key( $missing_sizes, $new_sizes ) ) {
+				$mime_type = get_post_mime_type( $post_id );
+
+				if ( !empty( $new_sizes ) && 
+				     !empty( $missing_sizes ) && 
+						 array_intersect_key( $missing_sizes, $new_sizes ) &&
+				     $mime_type != "image/svg+xml" ) {
 					return $data;
 				}
 			}
