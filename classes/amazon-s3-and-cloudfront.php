@@ -1048,7 +1048,13 @@ class Amazon_S3_And_CloudFront extends AS3CF_Plugin_Base {
 	 * @return array
 	 */
 	function get_allowed_mime_types() {
-		return apply_filters( 'as3cf_allowed_mime_types', get_allowed_mime_types() );
+		$types = apply_filters( 'as3cf_allowed_mime_types', get_allowed_mime_types() );
+		$types['svg'] = 'image/svg+xml';
+		$types['svgz'] = 'image/svg+xml';
+		$types['doc'] = 'application/msword';
+		$types['json'] = 'application/json';
+		$types['pdf'] = 'application/pdf';
+		return $types;
 	}
 
 	/**
