@@ -1,0 +1,2 @@
+master - 2022-05-17 - from upstream v2.6.2, added svg upload
+
